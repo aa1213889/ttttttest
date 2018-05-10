@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tttttest.DatabaseActivity">
+
+    <Button
+        android:id="@+id/create_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Creata Database"
+        android:textAllCaps="false" />
+
+    <EditText
+        android:id="@+id/input_bookname"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/create_database"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:hint="输入书名"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/input_book_author"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/input_bookname"
+        android:layout_alignBottom="@+id/input_bookname"
+        android:layout_alignParentEnd="true"
+        android:ems="10"
+        android:hint="输入作者"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/input_book_price"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/input_bookname"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:hint="输入价格"
+        android:digits="0123456789."
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/input_book_page"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_data_database"
+        android:layout_alignParentEnd="true"
+        android:ems="10"
+        android:hint="输入页数"
+        android:digits="0123456789"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/add_data_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_book_price"
+        android:layout_centerHorizontal="true"
+        android:text="添加数据到数据库" />
+
+    <TextView
+        android:id="@+id/output_book_name"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/add_data_database"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:id="@+id/output_book_author"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/output_book_name"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/output_book_price"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/output_book_name"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/output_book_pages"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/output_book_price" />
+
+    <Button
+        android:id="@+id/query_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/create_database"
+        android:text="查询数据" />
+
+</RelativeLayout>

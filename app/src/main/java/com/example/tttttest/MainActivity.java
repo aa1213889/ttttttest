@@ -1,5 +1,7 @@
 package com.example.tttttest;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tttttest.CustomView.MyIntentService;
+import com.example.tttttest.db.NetWorkActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ConstraintLayout constraintLayout1;
     private PopupMenu mPopupMenu;
     private  MyService.DownloadBinder downloadBinder ;
-
+    private  Button btn_okhttp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button mm = (Button)findViewById(R.id.litepal);
+        mm.setOnClickListener(this);
+        btn_okhttp = (Button)findViewById(R.id.okhttp_btn);
+        btn_okhttp.setOnClickListener(this);
+        RotateAnimation();
         Button bind_service = (Button)findViewById(R.id.bind_service);
         bind_service.setOnClickListener(this);
         Button unbind_service = (Button)findViewById(R.id.unbind_service);
@@ -44,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stop_service.setOnClickListener(this);
         Button start_intent_service = (Button)findViewById(R.id.start_intent_service);
         start_intent_service.setOnClickListener(this);
-
+        Button datebase = (Button)findViewById(R.id.database);
+        datebase.setOnClickListener(this);
         Button button = (Button)findViewById(R.id.btn_show_menu);
         final Intent intent =new Intent(this,Main2Activity.class);
         button.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
               startActivity(intent1);
           }
       });
+      Button button5 = (Button)findViewById(R.id.button_permission);
+      button5.setOnClickListener(this);
 constraintLayout1 = (ConstraintLayout)findViewById(R.id.con_layout1);
 constraintLayout1.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -135,10 +146,42 @@ constraintLayout1.setOnLongClickListener(new View.OnLongClickListener() {
                 Intent intentService = new Intent(this, MyIntentService.class);
                 startService(intentService);
                 break;
+            case R.id.database:
+                Intent dataintent = new Intent(this,DatabaseActivity.class);
+                startActivity(dataintent);
+                break;
+            case R.id.litepal:
+                Intent liteAintent = new Intent(this,LitepalBookActivity.class);
+                startActivity(liteAintent);
+                break;
+            case R.id.okhttp_btn:
+                Intent okhttp_intent = new Intent(this,NetWorkActivity.class);
+                startActivity(okhttp_intent);
+                break;
+            case R.id.button_permission:
+                Intent permission_intent = new Intent(this,PermissionActivity.class);
+                startActivity(permission_intent);
+                overridePendingTransition(R.anim.activity_change_enter,R.anim.activity_change_exit);
+                break;
             default:
                 break;
         }
     }
+    private void RotateAnimation() {
+        ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(btn_okhttp, "alpha", 1.0f, 0.5f, 0.8f, 1.0f);
+        ObjectAnimator scaleXAnim = ObjectAnimator.ofFloat(btn_okhttp, "scaleX", 0.0f, 1.0f);
+        ObjectAnimator scaleYAnim = ObjectAnimator.ofFloat(btn_okhttp, "scaleY", 0.0f, 2.0f);
+        ObjectAnimator rotateAnim = ObjectAnimator.ofFloat(btn_okhttp, "rotation", 0, 360);
+        ObjectAnimator transXAnim = ObjectAnimator.ofFloat(btn_okhttp, "translationX", 100, 400);
+      //  ObjectAnimator transYAnim = ObjectAnimator.ofFloat(btn_okhttp, "tranlsationY", 100, 750);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim);
+           //    set.playSequentially(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim, transYAnim);
+        set.setDuration(3000);
+        set.start();
+
+    }
+
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {

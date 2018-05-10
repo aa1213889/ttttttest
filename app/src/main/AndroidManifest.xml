@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tttttest">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,8 +33,16 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true" />
-        <service android:name=".CustomView.MyIntentService"/>
+        <service android:name=".CustomView.MyIntentService" />
 
+        <activity android:name=".DatabaseActivity" />
+        <activity android:name=".LitepalBookActivity" />
+        <activity android:name=".TextEditActivity" />
+        <activity android:name=".db.NetWorkActivity" />
+        <activity android:name=".PermissionActivity" />
+        <activity android:name=".util.BabyCardActivity" />
+        <activity android:name=".util.MaterialDesignTestActivity" />
+        <activity android:name=".FruitActivity"></activity>
     </application>
 
 </manifest>

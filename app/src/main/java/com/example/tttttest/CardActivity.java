@@ -1,5 +1,6 @@
 package com.example.tttttest;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tttttest.util.BabyCardActivity;
+import com.example.tttttest.util.MaterialDesignTestActivity;
+
 public class CardActivity extends AppCompatActivity {
     private CardView cardView;
     private SeekBar seekBar1;
@@ -19,7 +23,7 @@ public class CardActivity extends AppCompatActivity {
     private TextView textView1;
     private TextView textView2;
     private TextView textView3;
-    private Button snackbar1;
+    private Button snackbar1,baby_btn,mate_btn;
     private ConstraintLayout constraintLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,20 @@ public class CardActivity extends AppCompatActivity {
         textView2=(TextView)findViewById(R.id.textView5);
         textView3=(TextView)findViewById(R.id.textView6);
         constraintLayout=(ConstraintLayout)findViewById(R.id.cons1);
+        baby_btn = (Button)findViewById(R.id.baby_card_btn);
+        baby_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(CardActivity.this, BabyCardActivity.class));
+            }
+        });
+        mate_btn = (Button)findViewById(R.id.mate_design_btn);
+        mate_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(CardActivity.this, MaterialDesignTestActivity.class));
+            }
+        });
        snackbar1=(Button) findViewById(R.id.snkb);
        snackbar1.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -90,13 +108,7 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 cardView.setContentPadding(progress,progress,progress,progress);//子控件和父控件的距离
-//                if(progress==0){
-//                    textView3.setText("控制图片间距");
-//                }else {
-//                    textView3.setText(progress + "%");
-//                }
                 textView3.setText(progress==0?"控制图片间距":progress + "%");
-              //  progress==0?textView3.setText("控制图片间距"):textView3.setText(progress + "%");
             }
 
             @Override
